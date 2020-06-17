@@ -30,23 +30,6 @@ app.get('/selectVrstePrihoda', (req,res)=>{
     })
 })
 
-var handleKFDisconnect = function() {
-    kfdb.on('error', function(err) {
-        if (!err.fatal) {
-            return;
-        }
-        if (err.code !== 'PROTOCOL_CONNECTION_LOST') {
-            console.log("PROTOCOL_CONNECTION_LOST");
-            throw err;
-        }
-        log.error("The database is error:" + err.stack);
-
-        kfdb = mysql.createConnection(kf_config);
-
-        console.log("kfid");
-
-        console.log(kfdb);
-        handleKFDisconnect();
-    });
-   };
-   handleKFDisconnect();
+setInterval(function () {
+    db.query('SELECT 1');
+}, 5000);
