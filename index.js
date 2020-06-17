@@ -9,10 +9,10 @@ app.listen(PORT,()=>{
 });
 
 const db = mysql.createConnection({
-    host: '',
-    user: '',
-    password: '',
-    database: ''
+    host: 'us-cdbr-east-05.cleardb.net',
+    user: 'bdb246875f1b56',
+    password: '90812b3b',
+    database: 'heroku_ca5aabe341b095e'
 });
 
 db.connect((err) =>{
