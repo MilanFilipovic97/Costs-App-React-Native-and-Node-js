@@ -5,6 +5,7 @@ require('dotenv').config();
 
 const app = express();
 app.use(cors());
+const bodyParser = require('body-parser')
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT,()=>{
@@ -26,11 +27,11 @@ db.connect((err) =>{
 });
 
 // parse application/x-www-form-urlencoded
-//app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: false }))
 
 // parse application/json
-//app.use(bodyParser.json())
-//insert vrednost grafikona
+app.use(bodyParser.json())
+
 
 
 setInterval(function () {
