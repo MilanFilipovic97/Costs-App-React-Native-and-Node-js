@@ -314,7 +314,7 @@ app.get('/selectMesecniPrihod/:mesec', (req,res)=> {
 //listu troskova vracam za taj mesec
 app.get('/selectListaRashodaMesec/:mesec', (req,res)=> {
     //console.log(req.params.datum);
-    let sql = 'SELECT * FROM lista_rashoda, vrste_rashoda where lista_rashoda.ID_Vrste_rashoda = vrste_rashoda.ID and Datum BETWEEN "2020-'+ req.params.mesec +'-01" AND "2020-'+ req.params.mesec+'-31"';
+    let sql = 'SELECT distinct Name, Slicica FROM lista_rashoda, vrste_rashoda where lista_rashoda.ID_Vrste_rashoda = vrste_rashoda.ID and Datum BETWEEN "2020-'+ req.params.mesec +'-01" AND "2020-'+ req.params.mesec+'-31"';
     let query = db.query(sql, (err,result)=>{
         if(err) throw err;
         //console.log(result);
@@ -382,7 +382,7 @@ app.get('/selectGodisnjiPrihod/:godina', (req,res)=> {
 //listu troskova vracam za taj mesec
 app.get('/selectListaRashodaGodina/:godina', (req,res)=> {
     //console.log(req.params.datum);
-    let sql = 'SELECT * FROM lista_rashoda, vrste_rashoda where lista_rashoda.ID_Vrste_rashoda = vrste_rashoda.ID and Datum BETWEEN "'+ req.params.godina+'-01-01" AND "'+ req.params.godina+'-12-31"';
+    let sql = 'SELECT distinct Name, Slicica FROM lista_rashoda, vrste_rashoda where lista_rashoda.ID_Vrste_rashoda = vrste_rashoda.ID and Datum BETWEEN "'+ req.params.godina+'-01-01" AND "'+ req.params.godina+'-12-31"';
     let query = db.query(sql, (err,result)=>{
         if(err) throw err;
         //console.log(result);
