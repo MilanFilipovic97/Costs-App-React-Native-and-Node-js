@@ -193,9 +193,9 @@ app.get('/selectListaRashoda/:datum', (req,res)=> {
 
 //vracam top 5  vrednosti rashoda za grafikon
 app.get('/grafikonRashodaDan/:datum', (req,res)=> {
+    //let sql = 'SELECT distinct name,vrednost,color,legendFontColor,legendFontSize FROM lista_rashoda, vrste_rashoda where lista_rashoda.ID_Vrste_rashoda = vrste_rashoda.ID and Datum = "' + req.params.datum +'"order by `vrednost` desc LIMIT 5';
     
-    //let sql = 'SELECT * FROM `LISTA_rashoda` order by `vrednost` desc LIMIT 5;';
-    let sql = 'SELECT distinct name,vrednost,color,legendFontColor,legendFontSize FROM lista_rashoda, vrste_rashoda where lista_rashoda.ID_Vrste_rashoda = vrste_rashoda.ID and Datum = "' + req.params.datum +'"order by `vrednost` desc LIMIT 5';
+    let sql = 'SELECT name,sum(vrednost),color,legendFontColor,legendFontSize FROM lista_rashoda, vrste_rashoda where lista_rashoda.ID_Vrste_rashoda = vrste_rashoda.ID and Datum = "' + req.params.datum +'" group by Name order by vrednost desc LIMIT 5';
     
     let query = db.query(sql, (err,result)=>{
         if(err) throw err;
