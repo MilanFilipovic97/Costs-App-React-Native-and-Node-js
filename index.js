@@ -393,9 +393,10 @@ app.get('/selectListaRashodaGodina/:godina', (req,res)=> {
 
 app.get('/grafikonRashodaGodina/:godina', (req,res)=> {
     
-    //let sql = 'SELECT * FROM `LISTA_rashoda` order by `vrednost` desc LIMIT 5;';
-    let sql = 'SELECT name,vrednost,color,legendFontColor,legendFontSize FROM lista_rashoda, vrste_rashoda where lista_rashoda.ID_Vrste_rashoda = vrste_rashoda.ID and Datum BETWEEN "'+ req.params.godina+'-01-01" AND "'+ req.params.godina+'-12-31" order by `vrednost` desc LIMIT 5';
+    //let sql = 'SELECT name,vrednost,color,legendFontColor,legendFontSize FROM lista_rashoda, vrste_rashoda where lista_rashoda.ID_Vrste_rashoda = vrste_rashoda.ID and Datum BETWEEN "'+ req.params.godina+'-01-01" AND "'+ req.params.godina+'-12-31" order by `vrednost` desc LIMIT 5';
+    let sql = 'SELECT name,sum(vrednost) as vrednost,color,legendFontColor,legendFontSize FROM lista_rashoda, vrste_rashoda where lista_rashoda.ID_Vrste_rashoda = vrste_rashoda.ID and Datum BETWEEN "'+ req.params.godina+'-01-01" AND "'+ req.params.godina+'-12-31" group by name order by vrednost desc LIMIT 5';
     
+
     let query = db.query(sql, (err,result)=>{
         if(err) throw err;
         //console.log(result);
