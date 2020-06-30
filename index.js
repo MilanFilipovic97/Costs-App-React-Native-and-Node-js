@@ -432,7 +432,7 @@ app.post("/dodajNovogKorisnika", function (req, res) {
 });
 });
 
-app.get('/selectKorisnik/:korisnickoIme/:lozinka', (req,res)=> {
+app.get('/selectKorisnik/:korisnickoIme&lozinka', (req,res)=> {
     console.log(req.params.korisnickoIme);
     console.log(req.params.lozinka);
     
