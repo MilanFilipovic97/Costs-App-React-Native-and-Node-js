@@ -418,3 +418,17 @@ app.get('/selectKarticaPrihodaGodina/:godina', (req,res)=> {
 });
 
 //#endregion
+
+//#region - KORISNICI
+app.post("/dodajNovogKorisnika", function (req, res) {        
+    
+    let sql = 'INSERT INTO korisnici (Ime,Prezime,KorisnickoIme,Lozinka) values ("'+req.body.Ime +'", "'+ req.body.Prezime +'","'+ req.body.KorisnickoIme +'" , "'+ req.body.Lozinka +'")';
+    let query = db.query(sql, (err,result)=>{
+        if(err) {throw err};
+        console.log(result);
+        res.send('post 1 dodat');
+});
+});
+
+
+//#endregion
