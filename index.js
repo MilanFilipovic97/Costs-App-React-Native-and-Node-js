@@ -424,9 +424,11 @@ app.post("/dodajNovogKorisnika", function (req, res) {
     
     let sql = 'INSERT INTO korisnici (Ime,Prezime,KorisnickoIme,Lozinka) values ("'+req.body.Ime +'", "'+ req.body.Prezime +'","'+ req.body.KorisnickoIme +'" , "'+ req.body.Lozinka +'")';
     let query = db.query(sql, (err,result)=>{
-        if(err) {throw err};
+        if(err) {res.send(err);}
+        else{
         console.log(result);
         res.send('post 1 dodat');
+        }
 });
 });
 
