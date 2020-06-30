@@ -432,9 +432,10 @@ app.post("/dodajNovogKorisnika", function (req, res) {
 });
 });
 
-app.get('/selectKorisnik/:korisnickoIme/:lozinka', (req,res)=> {
-    console.log(req.params.korisnickoIme);
-    console.log(req.params.lozinka);
+app.get('/selectKorisnik/:korisnickoIme', (req,res)=> {
+    res.send(req.params.korisnickoIme);
+    //console.log(req.params.korisnickoIme);
+    //console.log(req.params.lozinka);
     
     //let sql = 'SELECT ID from FROM Korisnici where Korisnicko_ime =  "' + req.params.korisnickoIme +'" and Lozinka = "' + req.params.lozinka +'"';
     //let query = db.query(sql, (err,result)=>{
