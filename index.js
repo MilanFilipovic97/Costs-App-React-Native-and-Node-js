@@ -427,7 +427,7 @@ app.post("/dodajNovogKorisnika", function (req, res) {
         if(err) {res.send(err);}
         else{
         console.log(result);
-        res.send('post 1 dodat');
+        res.send('Uspesno izvrsena registracija.');
         }
 });
 });
