@@ -432,5 +432,16 @@ app.post("/dodajNovogKorisnika", function (req, res) {
 });
 });
 
+app.get('/selectKorisnik/:korisnickoIme/:lozinka', (req,res)=> {
+    //console.log(req.params.datum);
+    let sql = 'SELECT ID from FROM Korisnici where Korisnicko_ime =  "' + req.params.korisnickoIme +'" and Lozinka = "' + req.params.lozinka +'"';
+    let query = db.query(sql, (err,result)=>{
+        if(err) throw err;
+        //console.log(result);
+        res.send(result);
+        //res.send('postovi prikazani');
+     // res.send(req.params.datum);
+   });
+});
 
 //#endregion
