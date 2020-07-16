@@ -427,7 +427,9 @@ app.post("/dodajNovogKorisnika", function (req, res) {
         if(err) {res.send("Korisnicko ime je zauzeto.");}
         else{
         console.log(result);
-        res.send('Uspesno izvrsena registracija.');
+		//ovde da izvrsim upit da mi vrati ID Korisnika i to da bude token
+        //res.send('Uspesno izvrsena registracija.');
+		res.send('1231');
         }
 });
 });
