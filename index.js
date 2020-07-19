@@ -438,12 +438,12 @@ app.post("/dodajNovogKorisnika", function (req, res) {
 
 app.get('/selectKorisnik/:korisnickoIme/:lozinka', (req,res)=> {
     
-    
-    let sql = 'SELECT ID as IDKorisnika FROM Korisnici where KorisnickoIme =  "' + req.params.korisnickoIme +'" and Lozinka = "' + req.params.lozinka +'"';
+    //as IDKorisnika
+    let sql = 'SELECT ID  FROM Korisnici where KorisnickoIme =  "' + req.params.korisnickoIme +'" and Lozinka = "' + req.params.lozinka +'"';
     let query = db.query(sql, (err,result)=>{
         if(err) throw err;
         console.log(result);
-        res.send.toString(result);
+        res.send(result);
         
    });
 });
