@@ -428,9 +428,9 @@ app.post("/dodajNovogKorisnika", function (req, res) {
         else{
         console.log(result);
 		//ovde da izvrsim upit da mi vrati ID Korisnika i to da bude token
-        //res.send('Uspesno izvrsena registracija.');
+        res.send('Uspesno izvrsena registracija.');
         //res.send({token: user.id});
-        res.send({token: '1231'});
+        //res.send({token: '1231'});
         //res.send('1231');
         }
 });
