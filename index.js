@@ -292,7 +292,7 @@ app.delete('/obrisiPrihod', (req,res)=> {
 
 app.get('/selectMesecniRashod/:mesec/:ID_Korisnika', (req,res)=> { 
     
-    let sql = 'SELECT sum(Vrednost) as Vrednost from lista_rashoda WHERE Datum BETWEEN "2020-'+ req.params.mesec +'-01" AND "2020-'+ req.params.mesec+'-31" and lista_prihoda.ID_Korisnika = "'+req.params.ID_Korisnika+'"';
+    let sql = 'SELECT sum(Vrednost) as Vrednost from lista_rashoda WHERE Datum BETWEEN "2020-'+ req.params.mesec +'-01" AND "2020-'+ req.params.mesec+'-31" and lista_rashoda.ID_Korisnika = "'+req.params.ID_Korisnika+'"';
     let query = db.query(sql, (err,result)=>{
         if(err) throw err;
         //console.log(result);
