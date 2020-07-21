@@ -179,9 +179,9 @@ app.post("/dodajVrednostRashoda", function (req, res) {
 
 
 //listu troskova vracam na taj dan
-app.get('/selectListaRashoda/:datum', (req,res)=> {
+app.get('/selectListaRashoda/:datum/:ID_Korisnika', (req,res)=> {
     //console.log(req.params.datum);
-    let sql = 'SELECT distinct Name, Slicica FROM lista_rashoda, vrste_rashoda where lista_rashoda.ID_Vrste_rashoda = vrste_rashoda.ID and Datum = "' + req.params.datum +'"';
+    let sql = 'SELECT distinct Name, Slicica FROM lista_rashoda, vrste_rashoda where lista_rashoda.ID_Vrste_rashoda = vrste_rashoda.ID and Datum = "' + req.params.datum +'" and lista_rashoda.ID_Korisnika = "'+req.params.ID_Korisnika+'"';
     let query = db.query(sql, (err,result)=>{
         if(err) throw err;
         //console.log(result);
