@@ -235,10 +235,10 @@ app.get('/selectUkupniRashod/:datum/:ID_Korisnika', (req,res)=> {
 
 //  DO OVDE SAM STIGAO
 // kartica troska
-app.get('/selectKarticaRashoda/:rashod', (req,res)=> {
+app.get('/selectKarticaRashoda/:rashod/:ID_Korisnika', (req,res)=> {
     //console.log("izvrsava se");
     //console.log(req.params.rashod);
-    let sql = 'SELECT DATE_FORMAT(Datum, "%Y-%m-%d") as Datum , Vrednost FROM lista_rashoda, vrste_rashoda where lista_rashoda.ID_Vrste_rashoda = vrste_rashoda.ID and Name = "' + req.params.rashod +'"order by `vrednost` desc';
+    let sql = 'SELECT DATE_FORMAT(Datum, "%Y-%m-%d") as Datum , Vrednost FROM lista_rashoda, vrste_rashoda where lista_rashoda.ID_Vrste_rashoda = vrste_rashoda.ID and lista_rashoda.ID_Korisnika = "'+req.params.ID_Korisnika+'" and Name = "' + req.params.rashod +'"order by `vrednost` desc';
     let query = db.query(sql, (err,result)=>{
         if(err) throw err;
         //console.log(result);
