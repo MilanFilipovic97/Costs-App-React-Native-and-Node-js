@@ -207,11 +207,11 @@ app.get('/grafikonRashodaDan/:datum/:ID_Korisnika', (req,res)=> {
     });
 });
 
-//  DO OVDE SAM STIGAO
+
 //vraca ukupne prihode na taj dan
-app.get('/selectUkupniPrihod/:datum', (req,res)=> {
+app.get('/selectUkupniPrihod/:datum/:ID_Korisnika', (req,res)=> {
     
-    let sql = 'SELECT sum(Vrednost) as Vrednost from lista_prihoda WHERE Datum = "' + req.params.datum +'"';
+    let sql = 'SELECT sum(Vrednost) as Vrednost from lista_prihoda WHERE Datum = "' + req.params.datum +'" and lista_rashoda.ID_Korisnika = "'+req.params.ID_Korisnika+'"';
     let query = db.query(sql, (err,result)=>{
         if(err) throw err;
         //console.log(result);
@@ -220,6 +220,7 @@ app.get('/selectUkupniPrihod/:datum', (req,res)=> {
      // res.send(req.params.datum);
    });
 });
+//  DO OVDE SAM STIGAO
 
 app.get('/selectUkupniRashod/:datum', (req,res)=> {
     
