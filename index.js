@@ -314,11 +314,11 @@ app.get('/selectMesecniPrihod/:mesec/:ID_Korisnika', (req,res)=> {
      // res.send(req.params.datum);
    });
 });
-//DO OVDE   
+  
 //listu troskova vracam za taj mesec
-app.get('/selectListaRashodaMesec/:mesec', (req,res)=> {
+app.get('/selectListaRashodaMesec/:mesec/:ID_Korisnika', (req,res)=> {
     //console.log(req.params.datum);
-    let sql = 'SELECT distinct Name, Slicica FROM lista_rashoda, vrste_rashoda where lista_rashoda.ID_Vrste_rashoda = vrste_rashoda.ID and Datum BETWEEN "2020-'+ req.params.mesec +'-01" AND "2020-'+ req.params.mesec+'-31"';
+    let sql = 'SELECT distinct Name, Slicica FROM lista_rashoda, vrste_rashoda where lista_rashoda.ID_Vrste_rashoda = vrste_rashoda.ID and lista_rashoda.ID_Korisnika = "'+req.params.ID_Korisnika+'" and Datum BETWEEN "2020-'+ req.params.mesec +'-01" AND "2020-'+ req.params.mesec+'-31"';
     let query = db.query(sql, (err,result)=>{
         if(err) throw err;
         //console.log(result);
@@ -328,9 +328,9 @@ app.get('/selectListaRashodaMesec/:mesec', (req,res)=> {
    });
 });
 
-app.get('/grafikonRashodaMesec/:mesec', (req,res)=> {
+app.get('/grafikonRashodaMesec/:mesec/:ID_Korisnika', (req,res)=> {
     //let sql = 'SELECT name,vrednost,color,legendFontColor,legendFontSize FROM lista_rashoda, vrste_rashoda where lista_rashoda.ID_Vrste_rashoda = vrste_rashoda.ID and Datum BETWEEN "2020-'+ req.params.mesec +'-01" AND "2020-'+ req.params.mesec+'-31" order by `vrednost` desc LIMIT 5';
-    let sql = 'SELECT name,sum(vrednost) as vrednost,color,legendFontColor,legendFontSize FROM lista_rashoda, vrste_rashoda where lista_rashoda.ID_Vrste_rashoda = vrste_rashoda.ID and Datum BETWEEN "2020-'+ req.params.mesec +'-01" AND "2020-'+ req.params.mesec+'-31" group by name order by vrednost desc LIMIT 5';
+    let sql = 'SELECT name,sum(vrednost) as vrednost,color,legendFontColor,legendFontSize FROM lista_rashoda, vrste_rashoda where lista_rashoda.ID_Vrste_rashoda = vrste_rashoda.ID and lista_rashoda.ID_Korisnika = "'+req.params.ID_Korisnika+'" and Datum BETWEEN "2020-'+ req.params.mesec +'-01" AND "2020-'+ req.params.mesec+'-31" group by name order by vrednost desc LIMIT 5';
     
     let query = db.query(sql, (err,result)=>{
         if(err) throw err;
@@ -342,9 +342,9 @@ app.get('/grafikonRashodaMesec/:mesec', (req,res)=> {
     });
 });
 
-app.get('/selectKarticaPrihodaMesec/:mesec', (req,res)=> {
+app.get('/selectKarticaPrihodaMesec/:mesec/:ID_Korisnika', (req,res)=> {
 
-    let sql = 'SELECT Name, Vrednost, Slicica,lista_prihoda.ID FROM lista_prihoda, vrste_prihoda where lista_prihoda.ID_Vrste_prihoda = vrste_prihoda.ID and Datum BETWEEN "2020-'+ req.params.mesec +'-01" AND "2020-'+ req.params.mesec+'-31"';
+    let sql = 'SELECT Name, Vrednost, Slicica,lista_prihoda.ID FROM lista_prihoda, vrste_prihoda where lista_prihoda.ID_Vrste_prihoda = vrste_prihoda.ID and lista_prihoda.ID_Korisnika = "'+req.params.ID_Korisnika+'" and Datum BETWEEN "2020-'+ req.params.mesec +'-01" AND "2020-'+ req.params.mesec+'-31"';
     let query = db.query(sql, (err,result)=>{
         if(err) throw err;
         res.send(result);
@@ -353,7 +353,7 @@ app.get('/selectKarticaPrihodaMesec/:mesec', (req,res)=> {
 });
 //#endregion
 
-
+//do ovde
 
 //#region Upiti za godisnji prikaz
 
