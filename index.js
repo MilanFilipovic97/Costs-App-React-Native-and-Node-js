@@ -220,11 +220,10 @@ app.get('/selectUkupniPrihod/:datum/:ID_Korisnika', (req,res)=> {
      // res.send(req.params.datum);
    });
 });
-//  DO OVDE SAM STIGAO
 
-app.get('/selectUkupniRashod/:datum', (req,res)=> {
+app.get('/selectUkupniRashod/:datum/:ID_Korisnika', (req,res)=> {
     
-    let sql = 'SELECT sum(Vrednost) as Vrednost from lista_rashoda WHERE Datum = "' + req.params.datum +'"';
+    let sql = 'SELECT sum(Vrednost) as Vrednost from lista_rashoda WHERE Datum = "' + req.params.datum +'"and lista_rashoda.ID_Korisnika = "'+req.params.ID_Korisnika+'"';
     let query = db.query(sql, (err,result)=>{
         if(err) throw err;
         //console.log(result);
@@ -233,6 +232,8 @@ app.get('/selectUkupniRashod/:datum', (req,res)=> {
      // res.send(req.params.datum);
    });
 });
+
+//  DO OVDE SAM STIGAO
 // kartica troska
 app.get('/selectKarticaRashoda/:rashod', (req,res)=> {
     //console.log("izvrsava se");
