@@ -247,7 +247,6 @@ app.get('/selectKarticaRashoda/:rashod/:ID_Korisnika', (req,res)=> {
      // res.send(req.params.datum);
    });
 });
-//DO OVDE 
 
 // kartica prihoda na dan
 app.get('/selectKarticaPrihoda/:dan/:ID_Korisnika', (req,res)=> {
@@ -266,13 +265,14 @@ app.get('/selectKarticaPrihoda/:dan/:ID_Korisnika', (req,res)=> {
 
 app.post("/dodajVrednostPrihoda", function (req, res) {        
     
-    let sql = 'INSERT INTO lista_prihoda (Datum,Vrednost,ID_Vrste_Prihoda) values ("'+req.body.Datum +'", "'+ req.body.Vrednost +'","'+ req.body.ID_Vrste_Prihoda +'")';
+    let sql = 'INSERT INTO lista_prihoda (Datum,Vrednost,ID_Vrste_Prihoda,ID_Korisnika) values ("'+req.body.Datum +'", "'+ req.body.Vrednost +'","'+ req.body.ID_Vrste_Prihoda +'", "'+ req.body.ID_Korisnika +'")';
     let query = db.query(sql, (err,result)=>{
         if(err) throw err;
         console.log(result);
         res.send('post 1 dodat');
 });
 });
+//DO OVDE 
 app.delete('/obrisiPrihod', (req,res)=> {
       
     
