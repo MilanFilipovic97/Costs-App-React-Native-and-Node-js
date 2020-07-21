@@ -247,14 +247,14 @@ app.get('/selectKarticaRashoda/:rashod/:ID_Korisnika', (req,res)=> {
      // res.send(req.params.datum);
    });
 });
-//DO OVDE SAM STIGAO
+//DO OVDE 
 
 // kartica prihoda na dan
-app.get('/selectKarticaPrihoda/:dan/:ID_Korisnika', (req,res)=> {
+app.get('/selectKarticaPrihoda/:dan', (req,res)=> {
     //console.log("izvrsava se");
     console.log(req.params.dan);
 
-    let sql = 'SELECT Name, Vrednost, Slicica,lista_prihoda.ID FROM lista_prihoda, vrste_prihoda where lista_prihoda.ID_Vrste_prihoda = vrste_prihoda.ID and lista_prihoda.ID_Korisnika = "'+req.params.ID_Korisnika+'" Datum = "' + req.params.dan +'"order by `vrednost` desc';
+    let sql = 'SELECT Name, Vrednost, Slicica,lista_prihoda.ID FROM lista_prihoda, vrste_prihoda where lista_prihoda.ID_Vrste_prihoda = vrste_prihoda.ID and Datum = "' + req.params.dan +'"order by `vrednost` desc';
     let query = db.query(sql, (err,result)=>{
         if(err) throw err;
         //console.log(result);
