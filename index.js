@@ -428,7 +428,7 @@ app.post("/dodajNovogKorisnika", function (req, res) {
         else{
         console.log(result);
      
-        let sql1 = 'SELECT ID FROM Korisnici where korisnickoIme = "'+req.body.KorisnickoIme +'" and "'+req.body.Lozinka +'";';
+        let sql1 = 'SELECT ID FROM Korisnici where korisnickoIme = "'+req.body.KorisnickoIme +'" and Lozinka = "'+req.body.Lozinka +'";';
         let query = db.query(sql1, (err,result)=>{
         if(err) {res.send("Greska.");}
         else{
