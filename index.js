@@ -272,7 +272,7 @@ app.post("/dodajVrednostPrihoda", function (req, res) {
         res.send('post 1 dodat');
 });
 });
-//DO OVDE 
+ 
 app.delete('/obrisiPrihod', (req,res)=> {
       
     
@@ -290,9 +290,9 @@ app.delete('/obrisiPrihod', (req,res)=> {
 
 //#region Upiti za mesecni prikaz
 
-app.get('/selectMesecniRashod/:mesec', (req,res)=> { 
+app.get('/selectMesecniRashod/:mesec/:ID_Korisnika', (req,res)=> { 
     
-    let sql = 'SELECT sum(Vrednost) as Vrednost from lista_rashoda WHERE Datum BETWEEN "2020-'+ req.params.mesec +'-01" AND "2020-'+ req.params.mesec+'-31"';
+    let sql = 'SELECT sum(Vrednost) as Vrednost from lista_rashoda WHERE Datum BETWEEN "2020-'+ req.params.mesec +'-01" AND "2020-'+ req.params.mesec+'-31" and lista_prihoda.ID_Korisnika = "'+req.params.ID_Korisnika+'"';
     let query = db.query(sql, (err,result)=>{
         if(err) throw err;
         //console.log(result);
@@ -301,7 +301,7 @@ app.get('/selectMesecniRashod/:mesec', (req,res)=> {
      // res.send(req.params.datum);
    });
 });
-
+//DO OVDE
 //vraca ukupne prihode na taj mesec
 app.get('/selectMesecniPrihod/:mesec', (req,res)=> {
     
