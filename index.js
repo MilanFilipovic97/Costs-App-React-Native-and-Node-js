@@ -168,7 +168,7 @@ app.put('/updateVrstePrihoda', (req,res)=> {
 
 app.post("/dodajVrednostRashoda", function (req, res) {        
     
-    let sql = 'INSERT INTO lista_rashoda (Datum,Vrednost,ID_Vrste_Rashoda) values ("'+req.body.Datum +'", "'+ req.body.Vrednost +'","'+ req.body.ID_Vrste_Rashoda +'")';
+    let sql = 'INSERT INTO lista_rashoda (Datum,Vrednost,ID_Vrste_Rashoda,ID_Korisnika) values ("'+req.body.Datum +'", "'+ req.body.Vrednost +'","'+ req.body.ID_Vrste_Rashoda +'","'+ req.body.ID_Korisnika +'")';
     let query = db.query(sql, (err,result)=>{
         if(err) {throw err; res.send(req.body.Datum);};
         console.log(result);
