@@ -211,7 +211,7 @@ app.get('/grafikonRashodaDan/:datum/:ID_Korisnika', (req,res)=> {
 //vraca ukupne prihode na taj dan
 app.get('/selectUkupniPrihod/:datum/:ID_Korisnika', (req,res)=> {
     
-    let sql = 'SELECT sum(Vrednost) as Vrednost from lista_prihoda WHERE Datum = "' + req.params.datum +'" and lista_rashoda.ID_Korisnika = "'+req.params.ID_Korisnika+'"';
+    let sql = 'SELECT sum(Vrednost) as Vrednost from lista_prihoda WHERE Datum = "' + req.params.datum +'" and lista_prihoda.ID_Korisnika = "'+req.params.ID_Korisnika+'"';
     let query = db.query(sql, (err,result)=>{
         if(err) throw err;
         //console.log(result);
