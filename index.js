@@ -192,10 +192,10 @@ app.get('/selectListaRashoda/:datum/:ID_Korisnika', (req,res)=> {
 });
 
 //vracam top 5  vrednosti rashoda za grafikon
-app.get('/grafikonRashodaDan/:datum', (req,res)=> {
+app.get('/grafikonRashodaDan/:datum/:ID_Korisnika', (req,res)=> {
     //let sql = 'SELECT distinct name,vrednost,color,legendFontColor,legendFontSize FROM lista_rashoda, vrste_rashoda where lista_rashoda.ID_Vrste_rashoda = vrste_rashoda.ID and Datum = "' + req.params.datum +'"order by `vrednost` desc LIMIT 5';
     
-    let sql = 'SELECT name,sum(vrednost) as vrednost,color,legendFontColor,legendFontSize FROM lista_rashoda, vrste_rashoda where lista_rashoda.ID_Vrste_rashoda = vrste_rashoda.ID and Datum = "' + req.params.datum +'" group by name order by vrednost desc LIMIT 5';
+    let sql = 'SELECT name,sum(vrednost) as vrednost,color,legendFontColor,legendFontSize FROM lista_rashoda, vrste_rashoda where lista_rashoda.ID_Vrste_rashoda = vrste_rashoda.ID and lista_rashoda.ID_Korisnika = "'+req.params.ID_Korisnika+'" and Datum = "' + req.params.datum +'" group by name order by vrednost desc LIMIT 5';
     
     let query = db.query(sql, (err,result)=>{
         if(err) throw err;
@@ -207,7 +207,7 @@ app.get('/grafikonRashodaDan/:datum', (req,res)=> {
     });
 });
 
-
+//  DO OVDE SAM STIGAO
 //vraca ukupne prihode na taj dan
 app.get('/selectUkupniPrihod/:datum', (req,res)=> {
     
