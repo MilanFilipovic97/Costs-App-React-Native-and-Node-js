@@ -100,6 +100,25 @@ app.post("/dodajVrstuRashoda", function (req, res) {
     let sql = 'INSERT INTO vrste_rashoda (Name,Slicica,Color,legendFontColor,legendFontSize) values ("'+req.body.name +'","'+ req.body.slicica +'","'+req.body.color+'","'+ req.body.legendFontColor+'","'+ req.body.legendFontSize+'")';
     
     let query = db.query(sql, (err,result)=>{
+        if(err) {Response.send("Vrsta rashoda je vec kreirana.");}
+        else{
+        console.log(result);
+        res.send('post 1 dodat');}
+});
+    }
+    catch(e)
+{
+    console.log("greska pri dodavanju" +e);
+}
+});
+
+/* OVO MENJAM
+app.post("/dodajVrstuRashoda", function (req, res) {        
+    
+    try{
+    let sql = 'INSERT INTO vrste_rashoda (Name,Slicica,Color,legendFontColor,legendFontSize) values ("'+req.body.name +'","'+ req.body.slicica +'","'+req.body.color+'","'+ req.body.legendFontColor+'","'+ req.body.legendFontSize+'")';
+    
+    let query = db.query(sql, (err,result)=>{
         if(err) throw err;
         console.log(result);
         res.send('post 1 dodat');
@@ -109,7 +128,7 @@ app.post("/dodajVrstuRashoda", function (req, res) {
 {
     console.log("greska pri dodavanju" +e);
 }
-});
+});*/
 
 //#endregion
 
