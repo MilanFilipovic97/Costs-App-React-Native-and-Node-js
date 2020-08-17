@@ -147,15 +147,24 @@ app.get('/selectVrstePrihoda', (req,res)=> {
 });
 
 app.post("/dodajVrstuPrihoda", function (req, res) {        
-    
+    try{
     
     let sql = 'INSERT INTO vrste_prihoda (Name,Slicica,Color,legendFontColor,legendFontSize) values ("'+req.body.name +'","'+ req.body.slicica +'","'+req.body.color+'","'+ req.body.legendFontColor+'","'+ req.body.legendFontSize+'")';
     
     let query = db.query(sql, (err,result)=>{
-        if(err) throw err;
-        console.log(result);
-        res.send('post 1 dodat');
+        if(err) {res.send("Vrsta prihoda je vec kreirana.");}
+        else{
+            console.log(result);
+            res.send('Uspesno kreirana nova vrsta prihoda.');
+
+        }
 });
+}
+    catch(e)
+    {
+    console.log("greska pri dodavanju" +e);
+    }
+
 });
 
 app.delete('/obrisiVrstuPrihoda', (req,res)=> {
