@@ -100,7 +100,7 @@ app.post("/dodajVrstuRashoda", function (req, res) {
     let sql = 'INSERT INTO vrste_rashoda (Name,Slicica,Color,legendFontColor,legendFontSize) values ("'+req.body.name +'","'+ req.body.slicica +'","'+req.body.color+'","'+ req.body.legendFontColor+'","'+ req.body.legendFontSize+'")';
     
     let query = db.query(sql, (err,result)=>{
-        if(err) {/*res.send(err);*/   res.send("Korisnicko ime je zauzeto.");}
+        if(err) {res.send(err);   /*res.send("Korisnicko ime je zauzeto.");*/}
         else{
         console.log(result);
         res.send('post 1 dodat');}
